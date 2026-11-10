@@ -1,0 +1,9 @@
+{
+  "ssh_tunnel": "verified",
+  "http_status": 200,
+  "model": "1.0",
+  "as_of": "2026-11-06",
+  "regime": "C2",
+  "data_status": "missing_inputs",
+  "cleanup": "Temporary tunnel processes absent on follow-up process inspection"
+}

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eccles-regime"
+version = "1.0.0"
+description = "Versioned frozen Global26 regime inference and direct NEON/LRP explanations"
+requires-python = ">=3.12"
+dependencies = ["numpy==2.3.5", "pandas==2.2.3", "exchange_calendars==4.13.1", "fastapi>=0.115,<1", "uvicorn>=0.30,<1"]
+
+[project.scripts]
+eccles = "eccles_service.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

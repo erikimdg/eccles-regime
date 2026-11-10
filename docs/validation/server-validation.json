@@ -1,0 +1,8 @@
+{
+  "tests_exit": 0,
+  "tests": "..................                                                       [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /usr/local/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n18 passed, 1 warning in 3.68s\n",
+  "activation_exit": 0,
+  "activation": "{\n  \"version\": \"1.0\",\n  \"sha256\": \"23ee686ab3d4403e48ac887644f1d754ee806246e772ddebfb3313175235f764\",\n  \"activated_at\": \"2026-11-10T01:43:48.922572+00:00\",\n  \"previous\": null\n}\n",
+  "image": "sha256:db310ca03f4b9662122c70cc4d15cb64d0671f840e21bb152844bfd5a1a6f95b",
+  "base_image": "#4 [1/7] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b\n#4 resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.0s done\n#4 [1/7] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b\n#4 [1/7] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b\n#4 [1/7] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b\n#4 [1/7] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b"
+}

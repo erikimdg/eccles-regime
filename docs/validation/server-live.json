@@ -1,0 +1,1061 @@
+{
+  "live": {
+    "code": 200,
+    "body": {
+      "status": "alive"
+    }
+  },
+  "unauthenticated": {
+    "code": 401,
+    "body": {
+      "detail": "Authentication required"
+    }
+  },
+  "model": {
+    "code": 200,
+    "body": {
+      "model_version": "1.0",
+      "model_sha256": "23ee686ab3d4403e48ac887644f1d754ee806246e772ddebfb3313175235f764",
+      "service_version": "1.0.0",
+      "name": "Global26",
+      "features": [
+        {
+          "id": "rank252__return__sp500__21d",
+          "label": "Return S&P",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "return",
+          "sources": [
+            "sp500"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__return__nasdaq100__21d",
+          "label": "Return NDX",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "return",
+          "sources": [
+            "nasdaq100"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__return__russell2000__21d",
+          "label": "Return RUT",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "return",
+          "sources": [
+            "russell2000"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__return__ftse100__21d",
+          "label": "Return FTSE",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "return",
+          "sources": [
+            "ftse100"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__realized_vol__sp500__21d",
+          "label": "RV S&P",
+          "raw_unit": "annualized_fraction",
+          "rank_window": 252,
+          "operator": "volatility",
+          "sources": [
+            "sp500"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__realized_vol__nasdaq100__21d",
+          "label": "RV NDX",
+          "raw_unit": "annualized_fraction",
+          "rank_window": 252,
+          "operator": "volatility",
+          "sources": [
+            "nasdaq100"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__realized_vol__russell2000__21d",
+          "label": "RV RUT",
+          "raw_unit": "annualized_fraction",
+          "rank_window": 252,
+          "operator": "volatility",
+          "sources": [
+            "russell2000"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__level__vix",
+          "label": "VIX",
+          "raw_unit": "index_points",
+          "rank_window": 252,
+          "operator": "level",
+          "sources": [
+            "vix"
+          ]
+        },
+        {
+          "id": "rank252__level__vstoxx",
+          "label": "VSTOXX",
+          "raw_unit": "index_points",
+          "rank_window": 252,
+          "operator": "level",
+          "sources": [
+            "vstoxx"
+          ]
+        },
+        {
+          "id": "rank252__corr__sp500__nasdaq100__21d",
+          "label": "Corr S&P / NDX",
+          "raw_unit": "correlation",
+          "rank_window": 252,
+          "operator": "correlation",
+          "sources": [
+            "sp500",
+            "nasdaq100"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__corr__sp500__russell2000__21d",
+          "label": "Corr S&P / RUT",
+          "raw_unit": "correlation",
+          "rank_window": 252,
+          "operator": "correlation",
+          "sources": [
+            "sp500",
+            "russell2000"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__corr__nasdaq100__russell2000__21d",
+          "label": "Corr NDX / RUT",
+          "raw_unit": "correlation",
+          "rank_window": 252,
+          "operator": "correlation",
+          "sources": [
+            "nasdaq100",
+            "russell2000"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__msci_cyc_minus_def_return21",
+          "label": "Cyclical - Defensive, 21",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "spread",
+          "sources": [
+            "msci_cyclical",
+            "msci_defensive"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__msci_em_minus_us_return21",
+          "label": "EM - USA, 21",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "spread",
+          "sources": [
+            "msci_em",
+            "msci_us"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__msci_japan_minus_emu_return21",
+          "label": "Japan - EMU, 21",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "spread",
+          "sources": [
+            "msci_japan",
+            "msci_emu"
+          ],
+          "window": 21
+        },
+        {
+          "id": "rank252__msci_country_pc1share63",
+          "label": "Country PC1, 63",
+          "raw_unit": "fraction",
+          "rank_window": 252,
+          "operator": "pc1_share",
+          "sources": [
+            "msci_us",
+            "msci_uk",
+            "msci_japan",
+            "msci_canada",
+            "msci_australia",
+            "msci_germany",
+            "msci_france",
+            "msci_switzerland"
+          ],
+          "window": 63
+        },
+        {
+          "id": "msci_cyclical_absolute_return21",
+          "label": "Cyclical return, 21",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_cyclical"
+          ],
+          "window": 21
+        },
+        {
+          "id": "msci_defensive_absolute_return21",
+          "label": "Defensive return, 21",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_defensive"
+          ],
+          "window": 21
+        },
+        {
+          "id": "msci_japan_absolute_return21",
+          "label": "Japan return, 21",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_japan"
+          ],
+          "window": 21
+        },
+        {
+          "id": "msci_em_absolute_return21",
+          "label": "EM return, 21",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_em"
+          ],
+          "window": 21
+        },
+        {
+          "id": "msci_emu_absolute_return21",
+          "label": "EMU return, 21",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_emu"
+          ],
+          "window": 21
+        },
+        {
+          "id": "msci_cyclical_absolute_return5",
+          "label": "Cyclical return, 5",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_cyclical"
+          ],
+          "window": 5
+        },
+        {
+          "id": "msci_defensive_absolute_return5",
+          "label": "Defensive return, 5",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_defensive"
+          ],
+          "window": 5
+        },
+        {
+          "id": "msci_japan_absolute_return5",
+          "label": "Japan return, 5",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_japan"
+          ],
+          "window": 5
+        },
+        {
+          "id": "msci_em_absolute_return5",
+          "label": "EM return, 5",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_em"
+          ],
+          "window": 5
+        },
+        {
+          "id": "msci_emu_absolute_return5",
+          "label": "EMU return, 5",
+          "raw_unit": "fraction",
+          "operator": "return",
+          "sources": [
+            "msci_emu"
+          ],
+          "window": 5
+        }
+      ],
+      "sources": [
+        {
+          "id": "sp500",
+          "provider": "fmp",
+          "symbol": "^GSPC",
+          "calendar": "XNYS"
+        },
+        {
+          "id": "nasdaq100",
+          "provider": "fmp",
+          "symbol": "^NDX",
+          "calendar": "XNYS"
+        },
+        {
+          "id": "russell2000",
+          "provider": "yahoo",
+          "symbol": "^RUT",
+          "calendar": "XNYS"
+        },
+        {
+          "id": "ftse100",
+          "provider": "fmp",
+          "symbol": "^FTSE",
+          "calendar": "XLON"
+        },
+        {
+          "id": "vix",
+          "provider": "cboe",
+          "symbol": "VIX",
+          "calendar": "XNYS"
+        },
+        {
+          "id": "vstoxx",
+          "provider": "stoxx",
+          "symbol": "V2TX",
+          "calendar": "published"
+        },
+        {
+          "id": "msci_us",
+          "provider": "msci",
+          "symbol": "984000",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_uk",
+          "provider": "msci",
+          "symbol": "982600",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_japan",
+          "provider": "msci",
+          "symbol": "939200",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_canada",
+          "provider": "msci",
+          "symbol": "912400",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_australia",
+          "provider": "msci",
+          "symbol": "903600",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_germany",
+          "provider": "msci",
+          "symbol": "928000",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_france",
+          "provider": "msci",
+          "symbol": "925000",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_switzerland",
+          "provider": "msci",
+          "symbol": "975600",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_em",
+          "provider": "msci",
+          "symbol": "891800",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_emu",
+          "provider": "msci",
+          "symbol": "106400",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_cyclical",
+          "provider": "msci",
+          "symbol": "704856",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        },
+        {
+          "id": "msci_defensive",
+          "provider": "msci",
+          "symbol": "704855",
+          "calendar": "published",
+          "align": "anchor",
+          "currency": "USD",
+          "variant": "STRD"
+        }
+      ],
+      "classes": [
+        {
+          "id": "C0",
+          "label": "Differentiated / lower co-movement",
+          "label_ko": "차별화, 낮은 동조화"
+        },
+        {
+          "id": "C1",
+          "label": "Synchronized upswing",
+          "label_ko": "동반 상승"
+        },
+        {
+          "id": "C2",
+          "label": "Weak / stressed",
+          "label_ko": "약세, 스트레스"
+        }
+      ],
+      "training": {
+        "start": "2001-01-01",
+        "end": "2022-12-31",
+        "n": 5391
+      },
+      "neon_beta": 0.26605344962744887
+    }
+  },
+  "latest": {
+    "code": 200,
+    "body": {
+      "status": {
+        "model_version": "1.0",
+        "expected_as_of": "2026-11-09",
+        "available_as_of": "2026-11-06",
+        "data_status": "missing_inputs",
+        "fresh": false,
+        "last_attempt": {
+          "run_id": "20261110T015650Z-05f53287",
+          "model_version": "1.0",
+          "started_at": "2026-11-10T01:56:50.835008+00:00",
+          "expected_as_of": "2026-11-09",
+          "status": "missing_inputs",
+          "published": 1,
+          "available_as_of": "2026-11-06",
+          "availability": {
+            "date": "2026-11-09",
+            "missing_features": [
+              "rank252__level__vix"
+            ],
+            "scheduled_closures": [],
+            "absent_sources": [
+              "vix"
+            ],
+            "state": "missing_inputs"
+          },
+          "snapshot_sha256": "a989c20bf3eb6f45f4e3bd68590f2414dc82d50356c580e4275794e3b85e8438",
+          "source_dates": {
+            "sp500": "2026-11-09",
+            "nasdaq100": "2026-11-09",
+            "russell2000": "2026-11-09",
+            "ftse100": "2026-11-09",
+            "vix": "2026-11-06",
+            "vstoxx": "2026-11-09",
+            "msci_us": "2026-11-09",
+            "msci_uk": "2026-11-09",
+            "msci_japan": "2026-11-09",
+            "msci_canada": "2026-11-09",
+            "msci_australia": "2026-11-09",
+            "msci_germany": "2026-11-09",
+            "msci_france": "2026-11-09",
+            "msci_switzerland": "2026-11-09",
+            "msci_em": "2026-11-09",
+            "msci_emu": "2026-11-09",
+            "msci_cyclical": "2026-11-09",
+            "msci_defensive": "2026-11-09"
+          },
+          "revised_existing_days": [],
+          "excluded_dates": [
+            {
+              "date": "2026-11-09",
+              "missing_features": [
+                "rank252__level__vix"
+              ],
+              "scheduled_closures": [],
+              "absent_sources": [
+                "vix"
+              ],
+              "state": "missing_inputs"
+            }
+          ],
+          "finished_at": "2026-11-10T01:57:09.902363+00:00"
+        },
+        "checked_at": "2026-11-10T01:57:18.845443+00:00"
+      },
+      "result": {
+        "model_version": "1.0",
+        "service_version": "1.0.0",
+        "model_sha256": "23ee686ab3d4403e48ac887644f1d754ee806246e772ddebfb3313175235f764",
+        "as_of": "2026-11-06",
+        "market": "US close",
+        "observed_at": "2026-11-10T01:57:09.239562+00:00",
+        "published_at": "2026-11-10T01:57:09.254289+00:00",
+        "run_id": "20261110T015650Z-05f53287",
+        "snapshot_sha256": "a989c20bf3eb6f45f4e3bd68590f2414dc82d50356c580e4275794e3b85e8438",
+        "origin": "live_original_sources",
+        "feature_vector_sha256": "ca55f4c84713bac24ce837b8aaddc6fe4ed462a37f30c000072c6eaa11679930",
+        "regime": "C2",
+        "label": "Weak / stressed",
+        "label_ko": "약세, 스트레스",
+        "closest_competitor": "C1",
+        "competitor_label": "Synchronized upswing",
+        "squared_distances": {
+          "C0": 14.925973406065424,
+          "C1": 12.410924693463365,
+          "C2": 5.749608847348807
+        },
+        "winning_margin": 6.661315846114557,
+        "normalized_gap": 0.36680176995596414,
+        "margin_training_percentile": 61.03427540589296,
+        "distance_training_percentile": 85.62838244137102,
+        "boundary_flag": false,
+        "atypical_distance": false,
+        "outside_training_feature_count": 0,
+        "neon": {
+          "status": "explained",
+          "beta": 0.26605344962744887,
+          "target": "C2",
+          "relevance_sum": 6.66131584611456,
+          "conservation_error": 2.6645352591003757e-15,
+          "competitor_allocation": {
+            "C0": 0.3386900214107387,
+            "C1": 0.6613099785892614
+          },
+          "positive": [
+            {
+              "feature": "rank252__return__nasdaq100__21d",
+              "label": "Return NDX",
+              "value": 0.007936507936507936,
+              "raw_value": -0.12158572874075568,
+              "raw_unit": "fraction",
+              "training_percentile": 1.7992951214987942,
+              "relevance": 1.13188196073344,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__return__sp500__21d",
+              "label": "Return S&P",
+              "value": 0.027777777777777776,
+              "raw_value": -0.05002987627102928,
+              "raw_unit": "fraction",
+              "training_percentile": 4.785754034501948,
+              "relevance": 1.0947888758665103,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__msci_cyc_minus_def_return21",
+              "label": "Cyclical - Defensive, 21",
+              "value": 0.023809523809523808,
+              "raw_value": -0.13124371930048706,
+              "raw_unit": "fraction",
+              "training_percentile": 4.451864218141346,
+              "relevance": 1.017553601357648,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_cyclical_absolute_return21",
+              "label": "Cyclical return, 21",
+              "value": -0.06569849247857051,
+              "raw_value": -0.06569849247857051,
+              "raw_unit": "fraction",
+              "training_percentile": 10.01669449081803,
+              "relevance": 0.7297502781300312,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_em_absolute_return21",
+              "label": "EM return, 21",
+              "value": -0.1155360261965458,
+              "raw_value": -0.1155360261965458,
+              "raw_unit": "fraction",
+              "training_percentile": 3.6356891114820997,
+              "relevance": 0.7218234057290783,
+              "outside_training_range": false
+            }
+          ],
+          "negative": [
+            {
+              "feature": "msci_defensive_absolute_return21",
+              "label": "Defensive return, 21",
+              "value": 0.06554522682191655,
+              "raw_value": 0.06554522682191655,
+              "raw_unit": "fraction",
+              "training_percentile": 96.75384900760527,
+              "relevance": -1.1235951010258742,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__return__ftse100__21d",
+              "label": "Return FTSE",
+              "value": 0.6507936507936508,
+              "raw_value": 0.022251379098988666,
+              "raw_unit": "fraction",
+              "training_percentile": 65.76701910591727,
+              "relevance": -0.4440113226475574,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__msci_japan_minus_emu_return21",
+              "label": "Japan - EMU, 21",
+              "value": 0.003968253968253968,
+              "raw_value": -0.11363167654648465,
+              "raw_unit": "fraction",
+              "training_percentile": 0.5379335930254128,
+              "relevance": -0.3429674876387248,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_emu_absolute_return21",
+              "label": "EMU return, 21",
+              "value": 0.006956859599303256,
+              "raw_value": 0.006956859599303256,
+              "raw_unit": "fraction",
+              "training_percentile": 49.564088295306995,
+              "relevance": -0.1218679569577448,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__msci_country_pc1share63",
+              "label": "Country PC1, 63",
+              "value": 0.25,
+              "raw_value": 0.529640698805045,
+              "raw_unit": "fraction",
+              "training_percentile": 23.910220738267483,
+              "relevance": -0.029104548510975936,
+              "outside_training_range": false
+            }
+          ],
+          "features": [
+            {
+              "feature": "rank252__return__sp500__21d",
+              "label": "Return S&P",
+              "value": 0.027777777777777776,
+              "raw_value": -0.05002987627102928,
+              "raw_unit": "fraction",
+              "training_percentile": 4.785754034501948,
+              "relevance": 1.0947888758665103,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__return__nasdaq100__21d",
+              "label": "Return NDX",
+              "value": 0.007936507936507936,
+              "raw_value": -0.12158572874075568,
+              "raw_unit": "fraction",
+              "training_percentile": 1.7992951214987942,
+              "relevance": 1.13188196073344,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__return__russell2000__21d",
+              "label": "Return RUT",
+              "value": 0.32936507936507936,
+              "raw_value": -0.01432280426074617,
+              "raw_unit": "fraction",
+              "training_percentile": 35.02133184937859,
+              "relevance": 0.271298156641359,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__return__ftse100__21d",
+              "label": "Return FTSE",
+              "value": 0.6507936507936508,
+              "raw_value": 0.022251379098988666,
+              "raw_unit": "fraction",
+              "training_percentile": 65.76701910591727,
+              "relevance": -0.4440113226475574,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__realized_vol__sp500__21d",
+              "label": "RV S&P",
+              "value": 0.9920634920634921,
+              "raw_value": 0.1933098370884212,
+              "raw_unit": "annualized_fraction",
+              "training_percentile": 95.99332220367279,
+              "relevance": 0.3513506511480604,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__realized_vol__nasdaq100__21d",
+              "label": "RV NDX",
+              "value": 0.9761904761904762,
+              "raw_value": 0.31048925171718955,
+              "raw_unit": "annualized_fraction",
+              "training_percentile": 93.97143387126692,
+              "relevance": 0.3255698251024823,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__realized_vol__russell2000__21d",
+              "label": "RV RUT",
+              "value": 0.8611111111111112,
+              "raw_value": 0.2228903321663832,
+              "raw_unit": "annualized_fraction",
+              "training_percentile": 84.07531070302356,
+              "relevance": 0.2393166313829034,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__level__vix",
+              "label": "VIX",
+              "value": 0.9523809523809523,
+              "raw_value": 25.64,
+              "raw_unit": "index_points",
+              "training_percentile": 92.8955666852161,
+              "relevance": 0.4453012135311472,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__level__vstoxx",
+              "label": "VSTOXX",
+              "value": 0.7698412698412699,
+              "raw_value": 21.2793,
+              "raw_unit": "index_points",
+              "training_percentile": 76.42366907809311,
+              "relevance": 0.21442600992676067,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__corr__sp500__nasdaq100__21d",
+              "label": "Corr S&P / NDX",
+              "value": 0.7261904761904762,
+              "raw_value": 0.949400469943459,
+              "raw_unit": "correlation",
+              "training_percentile": 70.26525690966426,
+              "relevance": 0.1463560565809197,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__corr__sp500__russell2000__21d",
+              "label": "Corr S&P / RUT",
+              "value": 0.8531746031746031,
+              "raw_value": 0.8961829191694889,
+              "raw_unit": "correlation",
+              "training_percentile": 81.96067519940642,
+              "relevance": 0.2451189391640457,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__corr__nasdaq100__russell2000__21d",
+              "label": "Corr NDX / RUT",
+              "value": 0.7936507936507936,
+              "raw_value": 0.824627532450774,
+              "raw_unit": "correlation",
+              "training_percentile": 78.57540345019477,
+              "relevance": 0.21657726418308146,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__msci_cyc_minus_def_return21",
+              "label": "Cyclical - Defensive, 21",
+              "value": 0.023809523809523808,
+              "raw_value": -0.13124371930048706,
+              "raw_unit": "fraction",
+              "training_percentile": 4.451864218141346,
+              "relevance": 1.017553601357648,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__msci_em_minus_us_return21",
+              "label": "EM - USA, 21",
+              "value": 0.09523809523809523,
+              "raw_value": -0.06326856710583706,
+              "raw_unit": "fraction",
+              "training_percentile": 11.426451493229456,
+              "relevance": 0.09345598982308355,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__msci_japan_minus_emu_return21",
+              "label": "Japan - EMU, 21",
+              "value": 0.003968253968253968,
+              "raw_value": -0.11363167654648465,
+              "raw_unit": "fraction",
+              "training_percentile": 0.5379335930254128,
+              "relevance": -0.3429674876387248,
+              "outside_training_range": false
+            },
+            {
+              "feature": "rank252__msci_country_pc1share63",
+              "label": "Country PC1, 63",
+              "value": 0.25,
+              "raw_value": 0.529640698805045,
+              "raw_unit": "fraction",
+              "training_percentile": 23.910220738267483,
+              "relevance": -0.029104548510975936,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_cyclical_absolute_return21",
+              "label": "Cyclical return, 21",
+              "value": -0.06569849247857051,
+              "raw_value": -0.06569849247857051,
+              "raw_unit": "fraction",
+              "training_percentile": 10.01669449081803,
+              "relevance": 0.7297502781300312,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_defensive_absolute_return21",
+              "label": "Defensive return, 21",
+              "value": 0.06554522682191655,
+              "raw_value": 0.06554522682191655,
+              "raw_unit": "fraction",
+              "training_percentile": 96.75384900760527,
+              "relevance": -1.1235951010258742,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_japan_absolute_return21",
+              "label": "Japan return, 21",
+              "value": -0.1066748169471814,
+              "raw_value": -0.1066748169471814,
+              "raw_unit": "fraction",
+              "training_percentile": 2.3557781487664626,
+              "relevance": 0.67160016179332,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_em_absolute_return21",
+              "label": "EM return, 21",
+              "value": -0.1155360261965458,
+              "raw_value": -0.1155360261965458,
+              "raw_unit": "fraction",
+              "training_percentile": 3.6356891114820997,
+              "relevance": 0.7218234057290783,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_emu_absolute_return21",
+              "label": "EMU return, 21",
+              "value": 0.006956859599303256,
+              "raw_value": 0.006956859599303256,
+              "raw_unit": "fraction",
+              "training_percentile": 49.564088295306995,
+              "relevance": -0.1218679569577448,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_cyclical_absolute_return5",
+              "label": "Cyclical return, 5",
+              "value": -0.026296005928023614,
+              "raw_value": -0.026296005928023614,
+              "raw_unit": "fraction",
+              "training_percentile": 13.207197180485995,
+              "relevance": 0.1894616520998462,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_defensive_absolute_return5",
+              "label": "Defensive return, 5",
+              "value": -0.021319055651661145,
+              "raw_value": -0.021319055651661145,
+              "raw_unit": "fraction",
+              "training_percentile": 10.628825820812466,
+              "relevance": 0.18203877542196845,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_japan_absolute_return5",
+              "label": "Japan return, 5",
+              "value": -0.07500124504709882,
+              "raw_value": -0.07500124504709882,
+              "raw_unit": "fraction",
+              "training_percentile": 0.8347245409015025,
+              "relevance": 0.2853628081463808,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_em_absolute_return5",
+              "label": "EM return, 5",
+              "value": -0.0410678775133152,
+              "raw_value": -0.0410678775133152,
+              "raw_unit": "fraction",
+              "training_percentile": 6.937488406603599,
+              "relevance": 0.17805893541846687,
+              "outside_training_range": false
+            },
+            {
+              "feature": "msci_emu_absolute_return5",
+              "label": "EMU return, 5",
+              "value": 0.005604100789996513,
+              "raw_value": 0.005604100789996513,
+              "raw_unit": "fraction",
+              "training_percentile": 54.59098497495826,
+              "relevance": -0.02822892928509669,
+              "outside_training_range": false
+            }
+          ]
+        },
+        "interpretation": {
+          "en": "C2: Weak / stressed. The closest alternative is C1: Synchronized upswing. The winning margin is at the 61.0th percentile among training C2 days. Positive NEON contributions: Return NDX, Return S&P, Cyclical - Defensive, 21. Opposing contributions: Defensive return, 21, Return FTSE, Japan - EMU, 21.",
+          "ko": "C2: 약세, 스트레스. 가장 가까운 대안은 C1: 동반 상승입니다. 판단 여유는 training C2일 중 61.0 percentile입니다. NEON에서 지지하는 feature는 Return NDX, Return S&P, Cyclical - Defensive, 21, 반대하는 feature는 Defensive return, 21, Return FTSE, Japan - EMU, 21입니다.",
+          "selected_msci_21d_positive": 2,
+          "selected_msci_21d_total": 5,
+          "participation_basis": "Cyclical, Defensive, Japan, EM, EMU; overlapping indices, positive 21-session price returns",
+          "definitions": {
+            "neon": "Signed contribution to the assigned-class minimum squared-distance advantage, using both competitors",
+            "percentile": "Empirical midrank against frozen 2001-2022 references",
+            "margin": "Runner-up squared distance minus assigned squared distance",
+            "competitor_allocation": "LRP allocation weights, not regime probabilities"
+          }
+        }
+      }
+    }
+  },
+  "readiness": {
+    "code": 503,
+    "body": {
+      "model_version": "1.0",
+      "expected_as_of": "2026-11-09",
+      "available_as_of": "2026-11-06",
+      "data_status": "missing_inputs",
+      "fresh": false,
+      "last_attempt": {
+        "run_id": "20261110T015650Z-05f53287",
+        "model_version": "1.0",
+        "started_at": "2026-11-10T01:56:50.835008+00:00",
+        "expected_as_of": "2026-11-09",
+        "status": "missing_inputs",
+        "published": 1,
+        "available_as_of": "2026-11-06",
+        "availability": {
+          "date": "2026-11-09",
+          "missing_features": [
+            "rank252__level__vix"
+          ],
+          "scheduled_closures": [],
+          "absent_sources": [
+            "vix"
+          ],
+          "state": "missing_inputs"
+        },
+        "snapshot_sha256": "a989c20bf3eb6f45f4e3bd68590f2414dc82d50356c580e4275794e3b85e8438",
+        "source_dates": {
+          "sp500": "2026-11-09",
+          "nasdaq100": "2026-11-09",
+          "russell2000": "2026-11-09",
+          "ftse100": "2026-11-09",
+          "vix": "2026-11-06",
+          "vstoxx": "2026-11-09",
+          "msci_us": "2026-11-09",
+          "msci_uk": "2026-11-09",
+          "msci_japan": "2026-11-09",
+          "msci_canada": "2026-11-09",
+          "msci_australia": "2026-11-09",
+          "msci_germany": "2026-11-09",
+          "msci_france": "2026-11-09",
+          "msci_switzerland": "2026-11-09",
+          "msci_em": "2026-11-09",
+          "msci_emu": "2026-11-09",
+          "msci_cyclical": "2026-11-09",
+          "msci_defensive": "2026-11-09"
+        },
+        "revised_existing_days": [],
+        "excluded_dates": [
+          {
+            "date": "2026-11-09",
+            "missing_features": [
+              "rank252__level__vix"
+            ],
+            "scheduled_closures": [],
+            "absent_sources": [
+              "vix"
+            ],
+            "state": "missing_inputs"
+          }
+        ],
+        "finished_at": "2026-11-10T01:57:09.902363+00:00"
+      },
+      "checked_at": "2026-11-10T01:57:18.888949+00:00"
+    }
+  },
+  "service": {
+    "exit": 0,
+    "output": "ActiveState=active\nSubState=running\nUnitFileState=enabled\n"
+  },
+  "refresh": {
+    "exit": 0,
+    "output": "ActiveState=inactive\nSubState=dead\nResult=success\nExecMainStatus=0\n"
+  },
+  "timer": {
+    "exit": 0,
+    "output": "NEXT                            LEFT LAST PASSED UNIT                 ACTIVATES\nTue 2026-11-10 12:20:13 KST 1h 22min -         - eccles-refresh.timer eccles-refresh.service\n\n1 timers listed.\n"
+  },
+  "containers": {
+    "exit": 0,
+    "output": "eccles-api 76.08MiB / 512MiB 0.27%\n"
+  },
+  "existing": {
+    "exit": 0,
+    "output": "active\nactive\nactive\n"
+  },
+  "base": {
+    "exit": 0,
+    "output": "eccles-regime:1.0.0 536870912 1000000000 10001:10001\n"
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "period": "historical",
+    "rows": 6037,
+    "complete": 5881,
+    "max_feature_error": 1.1102230246251565e-16,
+    "label_mismatches": 0,
+    "nan_pattern_equal": true,
+    "prefix_replay": "passed"
+  },
+  {
+    "period": "2026",
+    "rows": 209,
+    "complete": 209,
+    "max_feature_error": 4.3021142204224816e-16,
+    "label_mismatches": 0,
+    "nan_pattern_equal": true,
+    "prefix_replay": "passed"
+  }
+]

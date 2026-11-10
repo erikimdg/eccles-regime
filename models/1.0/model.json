@@ -1,0 +1,651 @@
+{
+  "engine_schema": 1,
+  "model_version": "1.0",
+  "name": "Global26",
+  "explanation": "NEON directional LRP",
+  "anchor_source": "sp500",
+  "sources": [
+    {
+      "id": "sp500",
+      "provider": "fmp",
+      "symbol": "^GSPC",
+      "calendar": "XNYS"
+    },
+    {
+      "id": "nasdaq100",
+      "provider": "fmp",
+      "symbol": "^NDX",
+      "calendar": "XNYS"
+    },
+    {
+      "id": "russell2000",
+      "provider": "yahoo",
+      "symbol": "^RUT",
+      "calendar": "XNYS"
+    },
+    {
+      "id": "ftse100",
+      "provider": "fmp",
+      "symbol": "^FTSE",
+      "calendar": "XLON"
+    },
+    {
+      "id": "vix",
+      "provider": "cboe",
+      "symbol": "VIX",
+      "calendar": "XNYS"
+    },
+    {
+      "id": "vstoxx",
+      "provider": "stoxx",
+      "symbol": "V2TX",
+      "calendar": "published"
+    },
+    {
+      "id": "msci_us",
+      "provider": "msci",
+      "symbol": "984000",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_uk",
+      "provider": "msci",
+      "symbol": "982600",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_japan",
+      "provider": "msci",
+      "symbol": "939200",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_canada",
+      "provider": "msci",
+      "symbol": "912400",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_australia",
+      "provider": "msci",
+      "symbol": "903600",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_germany",
+      "provider": "msci",
+      "symbol": "928000",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_france",
+      "provider": "msci",
+      "symbol": "925000",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_switzerland",
+      "provider": "msci",
+      "symbol": "975600",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_em",
+      "provider": "msci",
+      "symbol": "891800",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_emu",
+      "provider": "msci",
+      "symbol": "106400",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_cyclical",
+      "provider": "msci",
+      "symbol": "704856",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    },
+    {
+      "id": "msci_defensive",
+      "provider": "msci",
+      "symbol": "704855",
+      "calendar": "published",
+      "align": "anchor",
+      "currency": "USD",
+      "variant": "STRD"
+    }
+  ],
+  "features": [
+    {
+      "id": "rank252__return__sp500__21d",
+      "label": "Return S&P",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "return",
+      "sources": [
+        "sp500"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__return__nasdaq100__21d",
+      "label": "Return NDX",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "return",
+      "sources": [
+        "nasdaq100"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__return__russell2000__21d",
+      "label": "Return RUT",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "return",
+      "sources": [
+        "russell2000"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__return__ftse100__21d",
+      "label": "Return FTSE",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "return",
+      "sources": [
+        "ftse100"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__realized_vol__sp500__21d",
+      "label": "RV S&P",
+      "raw_unit": "annualized_fraction",
+      "rank_window": 252,
+      "operator": "volatility",
+      "sources": [
+        "sp500"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__realized_vol__nasdaq100__21d",
+      "label": "RV NDX",
+      "raw_unit": "annualized_fraction",
+      "rank_window": 252,
+      "operator": "volatility",
+      "sources": [
+        "nasdaq100"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__realized_vol__russell2000__21d",
+      "label": "RV RUT",
+      "raw_unit": "annualized_fraction",
+      "rank_window": 252,
+      "operator": "volatility",
+      "sources": [
+        "russell2000"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__level__vix",
+      "label": "VIX",
+      "raw_unit": "index_points",
+      "rank_window": 252,
+      "operator": "level",
+      "sources": [
+        "vix"
+      ]
+    },
+    {
+      "id": "rank252__level__vstoxx",
+      "label": "VSTOXX",
+      "raw_unit": "index_points",
+      "rank_window": 252,
+      "operator": "level",
+      "sources": [
+        "vstoxx"
+      ]
+    },
+    {
+      "id": "rank252__corr__sp500__nasdaq100__21d",
+      "label": "Corr S&P / NDX",
+      "raw_unit": "correlation",
+      "rank_window": 252,
+      "operator": "correlation",
+      "sources": [
+        "sp500",
+        "nasdaq100"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__corr__sp500__russell2000__21d",
+      "label": "Corr S&P / RUT",
+      "raw_unit": "correlation",
+      "rank_window": 252,
+      "operator": "correlation",
+      "sources": [
+        "sp500",
+        "russell2000"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__corr__nasdaq100__russell2000__21d",
+      "label": "Corr NDX / RUT",
+      "raw_unit": "correlation",
+      "rank_window": 252,
+      "operator": "correlation",
+      "sources": [
+        "nasdaq100",
+        "russell2000"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__msci_cyc_minus_def_return21",
+      "label": "Cyclical - Defensive, 21",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "spread",
+      "sources": [
+        "msci_cyclical",
+        "msci_defensive"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__msci_em_minus_us_return21",
+      "label": "EM - USA, 21",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "spread",
+      "sources": [
+        "msci_em",
+        "msci_us"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__msci_japan_minus_emu_return21",
+      "label": "Japan - EMU, 21",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "spread",
+      "sources": [
+        "msci_japan",
+        "msci_emu"
+      ],
+      "window": 21
+    },
+    {
+      "id": "rank252__msci_country_pc1share63",
+      "label": "Country PC1, 63",
+      "raw_unit": "fraction",
+      "rank_window": 252,
+      "operator": "pc1_share",
+      "sources": [
+        "msci_us",
+        "msci_uk",
+        "msci_japan",
+        "msci_canada",
+        "msci_australia",
+        "msci_germany",
+        "msci_france",
+        "msci_switzerland"
+      ],
+      "window": 63
+    },
+    {
+      "id": "msci_cyclical_absolute_return21",
+      "label": "Cyclical return, 21",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_cyclical"
+      ],
+      "window": 21
+    },
+    {
+      "id": "msci_defensive_absolute_return21",
+      "label": "Defensive return, 21",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_defensive"
+      ],
+      "window": 21
+    },
+    {
+      "id": "msci_japan_absolute_return21",
+      "label": "Japan return, 21",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_japan"
+      ],
+      "window": 21
+    },
+    {
+      "id": "msci_em_absolute_return21",
+      "label": "EM return, 21",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_em"
+      ],
+      "window": 21
+    },
+    {
+      "id": "msci_emu_absolute_return21",
+      "label": "EMU return, 21",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_emu"
+      ],
+      "window": 21
+    },
+    {
+      "id": "msci_cyclical_absolute_return5",
+      "label": "Cyclical return, 5",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_cyclical"
+      ],
+      "window": 5
+    },
+    {
+      "id": "msci_defensive_absolute_return5",
+      "label": "Defensive return, 5",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_defensive"
+      ],
+      "window": 5
+    },
+    {
+      "id": "msci_japan_absolute_return5",
+      "label": "Japan return, 5",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_japan"
+      ],
+      "window": 5
+    },
+    {
+      "id": "msci_em_absolute_return5",
+      "label": "EM return, 5",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_em"
+      ],
+      "window": 5
+    },
+    {
+      "id": "msci_emu_absolute_return5",
+      "label": "EMU return, 5",
+      "raw_unit": "fraction",
+      "operator": "return",
+      "sources": [
+        "msci_emu"
+      ],
+      "window": 5
+    }
+  ],
+  "mean": [
+    0.4896697317398486,
+    0.4970122161274081,
+    0.48921556503637736,
+    0.4924565634081493,
+    0.48376556459472425,
+    0.47296714394655404,
+    0.48574858744586075,
+    0.45478575403450194,
+    0.46643472512977247,
+    0.5192494545583026,
+    0.517703668371448,
+    0.5026889318764667,
+    0.4888666590113446,
+    0.5025380337010832,
+    0.5043583809582697,
+    0.5240737796386098,
+    0.004207174815340003,
+    0.0037556301677173667,
+    0.001787610990846322,
+    0.0058785321355507274,
+    0.002494832463002372,
+    0.0009125731296703076,
+    0.0008705012498681029,
+    0.00045071945629771454,
+    0.0012851087634847599,
+    0.0005696747916811596
+  ],
+  "scale": [
+    0.2972477060809553,
+    0.2944513471861607,
+    0.29478617551787634,
+    0.2946913565247701,
+    0.3100321062498111,
+    0.3121384699051491,
+    0.30321238508563686,
+    0.3202249173165553,
+    0.31940156756915555,
+    0.2993106746783753,
+    0.30006075974850577,
+    0.29729466150904277,
+    0.2924207711490567,
+    0.2996655404758677,
+    0.2927415793441078,
+    0.3128948999650211,
+    0.057468542134277045,
+    0.0399328051141746,
+    0.05209662147530618,
+    0.06463453994961056,
+    0.06530473012016494,
+    0.02859893846065063,
+    0.02071960920011163,
+    0.02725901615257917,
+    0.030932227138786076,
+    0.033276298561993385
+  ],
+  "weights": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.4472135954999579,
+    0.4472135954999579,
+    0.4472135954999579,
+    0.4472135954999579,
+    0.4472135954999579,
+    0.5773502691896258,
+    0.5773502691896258,
+    0.5773502691896258,
+    0.5773502691896257,
+    0.408248290463863,
+    0.408248290463863,
+    0.5773502691896257,
+    0.5,
+    0.5,
+    0.408248290463863,
+    0.408248290463863,
+    0.408248290463863,
+    0.3535533905932738,
+    0.3535533905932738,
+    0.28867513459481287,
+    0.28867513459481287,
+    0.28867513459481287
+  ],
+  "centers": [
+    [
+      0.1476191245493121,
+      0.12626394379023662,
+      0.13391892529805316,
+      0.09348767225412746,
+      -0.36026816527950284,
+      -0.3193105094543584,
+      -0.3143046020973034,
+      -0.3203652484084109,
+      -0.3083706252878209,
+      -0.3330846906740558,
+      -0.4078517988288731,
+      -0.35126944911977703,
+      0.1272553490537793,
+      -0.0006426381951587085,
+      -0.01360421530332016,
+      -0.26245114709861816,
+      0.17488790484764652,
+      0.148301376019556,
+      0.12846465740624,
+      0.11822595621053575,
+      0.13241067650993577,
+      0.04311029437561793,
+      0.03267756873319107,
+      0.0377855159219913,
+      0.0278319703186577,
+      0.0320415582724044
+    ],
+    [
+      0.41242042010191915,
+      0.4023870008319256,
+      0.37242378300060475,
+      0.39087110926628843,
+      0.20617101140463015,
+      0.17156103664604264,
+      0.16347024493632453,
+      0.06402170551612164,
+      0.07007571165390493,
+      0.21846752267119435,
+      0.3345370467555874,
+      0.24689004366229286,
+      0.296129619751217,
+      0.06154761635614758,
+      -0.161640835571538,
+      0.2547856282566371,
+      0.33350234262986234,
+      0.3019328228463592,
+      0.17108306529905745,
+      0.24419523426080364,
+      0.2465560850744341,
+      0.17245768984482474,
+      0.14668364020467664,
+      0.0906896359383913,
+      0.1387678274766182,
+      0.12651459244847799
+    ],
+    [
+      -0.5401521339001571,
+      -0.5012253033089485,
+      -0.48866213862434965,
+      -0.4445483333718365,
+      0.3600593156939468,
+      0.3279521152555141,
+      0.32707841708752666,
+      0.4144541122127016,
+      0.39225929304363666,
+      0.31088401593338694,
+      0.3277044876344303,
+      0.3148231706571782,
+      -0.4187063938478175,
+      -0.04769827978885383,
+      0.14746640630379748,
+      0.17965649643225814,
+      -0.5173791223799504,
+      -0.4538420029653186,
+      -0.32165774550909476,
+      -0.3645640385513705,
+      -0.38701988507684343,
+      -0.19884404995721064,
+      -0.16333490929096084,
+      -0.12650656467753063,
+      -0.15004648325527123,
+      -0.14647534344370672
+    ]
+  ],
+  "neon_beta": 0.26605344962744887,
+  "distance_q99": 10.95983250995888,
+  "classes": [
+    {
+      "id": "C0",
+      "label": "Differentiated / lower co-movement",
+      "label_ko": "차별화, 낮은 동조화"
+    },
+    {
+      "id": "C1",
+      "label": "Synchronized upswing",
+      "label_ko": "동반 상승"
+    },
+    {
+      "id": "C2",
+      "label": "Weak / stressed",
+      "label_ko": "약세, 스트레스"
+    }
+  ],
+  "training": {
+    "start": "2001-01-01",
+    "end": "2022-12-31",
+    "n": 5391
+  },
+  "examined_periods": [
+    "2023-2024",
+    "2026 through 2026-11-05"
+  ],
+  "unpublished_years": [
+    2025
+  ],
+  "warmup_calendar_days": 1200,
+  "publication_start": "2026-01-01",
+  "source_artifact_sha256": "35c632a96524202099c1b5b0d9ad69a37e467eb8145f1a5eb967a98d9584a98b",
+  "research_choices": [
+    "Group weights fixed by researcher",
+    "Labels aligned to B12 partition",
+    "Publication vintage timestamps unavailable for historical training data"
+  ]
+}

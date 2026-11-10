@@ -1,0 +1,14 @@
+{
+  "command": [
+    "regime-model/eccles/service/.venv/bin/python",
+    "regime-model/eccles/runs/2026-11-10-v1-service/verify_features.py"
+  ],
+  "rss_limit_mib": 1024,
+  "sampled_peak_worker_rss_mib": 132.046875,
+  "wall_seconds": 11.721019749995321,
+  "exit_code": 0,
+  "stop_reason": null,
+  "cpu_limit": null,
+  "wall_limit": null,
+  "poll_seconds": 0.1
+}

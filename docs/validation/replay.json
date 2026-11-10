@@ -1,0 +1,32 @@
+{
+  "model_version": "1.0",
+  "bundle_sha256": "23ee686ab3d4403e48ac887644f1d754ee806246e772ddebfb3313175235f764",
+  "source_sha256": "35c632a96524202099c1b5b0d9ad69a37e467eb8145f1a5eb967a98d9584a98b",
+  "fits": 0,
+  "results": [
+    {
+      "period": "training",
+      "n": 5391,
+      "label_mismatches": 0,
+      "max_distance_error": 7.105427357601002e-15,
+      "max_relevance_error": 4.440892098500626e-16,
+      "max_conservation_error": 2.1316282072803006e-14
+    },
+    {
+      "period": "development",
+      "n": 490,
+      "label_mismatches": 0,
+      "max_distance_error": 3.552713678800501e-15,
+      "max_relevance_error": 2.220446049250313e-16,
+      "max_conservation_error": 5.329070518200751e-15
+    },
+    {
+      "period": "2026",
+      "n": 209,
+      "label_mismatches": 0,
+      "max_distance_error": 1.7763568394002505e-15,
+      "max_relevance_error": 2.220446049250313e-16,
+      "max_conservation_error": 7.105427357601002e-15
+    }
+  ]
+}

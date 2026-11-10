@@ -1,0 +1,18 @@
+{
+  "command": [
+    "regime-model/eccles/service/.venv/bin/python",
+    "-m",
+    "pytest",
+    "regime-model/eccles/service/tests",
+    "-q",
+    "--junitxml=regime-model/eccles/runs/2026-11-10-v1-service/tests.xml"
+  ],
+  "rss_limit_mib": 1024,
+  "sampled_peak_worker_rss_mib": 114.140625,
+  "wall_seconds": 1.5053638749523088,
+  "exit_code": 0,
+  "stop_reason": null,
+  "cpu_limit": null,
+  "wall_limit": null,
+  "poll_seconds": 0.1
+}

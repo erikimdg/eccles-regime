@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "model_version": "1.0",
+  "files": {
+    "model.json": "095affaaff27e4602ad919d82e259fb37e97f9b1bc5c593c702cfadb220945d4",
+    "reference.npz": "24f2193584d9b1ee8b9b9f6de121c4124e47478281942e3a7359dd922e294bc6",
+    "golden.json": "3bb44b8f8446e0c2a9228030ab68b5e6bd030932b07ccfcdc568824fcc13508f"
+  },
+  "original_sha256": "35c632a96524202099c1b5b0d9ad69a37e467eb8145f1a5eb967a98d9584a98b",
+  "provenance": "Frozen Global26 selected November 6, 2026; NEON verified November 10; no refit"
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "regime-model/eccles/.venv/bin/python",
+    "regime-model/eccles/runs/2026-11-10-v1-service/export_bundle.py"
+  ],
+  "rss_limit_mib": 1024,
+  "sampled_peak_worker_rss_mib": 173.484375,
+  "wall_seconds": 3.203661166015081,
+  "exit_code": 0,
+  "stop_reason": null,
+  "cpu_limit": null,
+  "wall_limit": null,
+  "poll_seconds": 0.1
+}

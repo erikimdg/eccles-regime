@@ -6,5 +6,5 @@ After=docker.service network-online.target
 [Service]
 Type=oneshot
 TimeoutStartSec=30min
-ExecStart=/usr/bin/docker run --rm --name eccles-refresh --init --memory=1g --memory-swap=1g --cpus=1 --read-only --cap-drop=ALL --security-opt=no-new-privileges --pids-limit=100 --tmpfs=/tmp:rw,noexec,nosuid,size=32m --env-file=/root/eccles-regime/secrets/service.env -v /root/eccles-regime/models:/app/models:ro -v /root/eccles-regime/runtime:/app/runtime eccles-regime:1.0.0 eccles refresh
+ExecStart=/usr/bin/docker run --rm --name eccles-refresh --init --memory=1g --memory-swap=1g --cpus=1 --read-only --cap-drop=ALL --security-opt=no-new-privileges --pids-limit=100 --tmpfs=/tmp:rw,noexec,nosuid,size=32m --env-file=/root/eccles-regime/secrets/service.env -v /root/eccles-regime/models:/app/models:ro -v /root/eccles-regime/runtime:/app/runtime eccles-regime:1.0.1 eccles refresh
 ExecStopPost=-/usr/bin/docker rm -f eccles-refresh

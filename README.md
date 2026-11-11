@@ -31,6 +31,8 @@ Six original series produce 12 core rank features: four equity returns, five vol
 
 Source selection is explicit: FMP S&P 500, Nasdaq 100 and FTSE 100; Yahoo original Russell 2000; Cboe VIX; STOXX V2TX; MSCI World Cyclical, World Defensive, USA, UK, Japan, Canada, Australia, Germany, France, Switzerland, EM and EMU. No ETF substitution or local price imputation.
 
+Since v1.0.1 the official Cboe VIX file, which publishes next morning US time, may be extended past its last date with the identical close from FMP `^VIX`: the fallback is accepted only when both channels agree within 0.005 on at least three overlapping dates, the added dates and the fallback response hash are recorded in the run's `sources.json`, and the next official file supersedes it (any divergence surfaces as a recorded revision). Values are never estimated.
+
 NEON explains the exact frozen decision. Positive feature relevance supports the assigned regime, negative relevance opposes it, and the signed total equals the winning margin. B12 and XGBoost comparisons remain in the original research archive.
 
 ## Run locally

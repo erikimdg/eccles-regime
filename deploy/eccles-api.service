@@ -7,7 +7,8 @@ After=docker.service network-online.target
 Restart=always
 RestartSec=10
 ExecStartPre=-/usr/bin/docker rm -f eccles-api
-ExecStart=/usr/bin/docker run --name eccles-api --init --memory=512m --memory-swap=512m --cpus=1 --read-only --cap-drop=ALL --security-opt=no-new-privileges --pids-limit=100 --tmpfs=/tmp:rw,noexec,nosuid,size=32m --env-file=/root/eccles-regime/secrets/service.env -p 127.0.0.1:18771:18771 -v /root/eccles-regime/models:/app/models:ro -v /root/eccles-regime/runtime:/app/runtime eccles-regime:1.0.0
+ExecStart=/usr/bin/docker run --name eccles-api --init --memory=512m --memory-swap=512m --cpus=1 --read-only --cap-drop=ALL --security-opt=no-new-privileges --pids-limit=100 --tmpfs=/tmp:rw,noexec,nosuid,size=32m --env-file=/root/eccles-regime/secrets/service.env -p 127.0.0.1:18771:18771 -v /root/eccles-regime/models:/app/models:ro -v /root/eccles-regime/runtime:/app/runtime eccles-regime:1.0.1
+ExecStartPost=-/bin/sh -c 'for i in 1 2 3 4 5 6 7 8 9 10; do /usr/bin/docker network connect compose_default eccles-api 2>/dev/null && break; sleep 2; done'
 ExecStop=/usr/bin/docker stop -t 20 eccles-api
 TimeoutStopSec=30
 

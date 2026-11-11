@@ -11,7 +11,8 @@ from eccles_service.api import create_app
 from eccles_service.features import expected_session, build_features, prepare_prices
 from eccles_service.model import Bundle, digest
 from eccles_service.pipeline import make_payload, refresh, status, availability
-from eccles_service.sources import SourceError, series
+from eccles_service import sources
+from eccles_service.sources import SourceError, series, trailing_fallback
 from eccles_service.storage import Store, active_bundle, activate, load_version, exclusive
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -139,6 +140,50 @@ def test_missing_prices_invalidate_windows(setup):
     assert pd.isna(x.iloc[-1]["rank252__return__sp500__21d"])
     assert pd.isna(x.iloc[-1]["rank252__corr__sp500__nasdaq100__21d"])
     assert pd.notna(x.iloc[-1]["msci_em_absolute_return21"])
+
+
+def _official(last="2026-11-09"):
+    idx = pd.bdate_range(end=last, periods=10)
+    return pd.Series(np.linspace(18.0, 19.92, 10), index=idx)
+
+
+def _patch_fmp(monkeypatch, rows):
+    monkeypatch.setattr(sources, "fmp_rows", lambda symbol, start, end: (rows, b"fallback-blob", "https://fmp.test"))
+
+
+def test_trailing_fallback_extends_official_series(monkeypatch):
+    primary = _official()
+    rows = [(d.date().isoformat(), float(v)) for d, v in primary.tail(4).items()] + [("2026-11-10", 19.46)]
+    _patch_fmp(monkeypatch, rows)
+    merged, info = trailing_fallback("vix", primary, "2026-11-10")
+    assert merged.index.max() == pd.Timestamp("2026-11-10") and merged.loc["2026-11-10"] == 19.46
+    assert len(merged) == len(primary) + 1 and merged.loc[primary.index].equals(primary)
+    assert info["record"]["dates"] == ["2026-11-10"] and info["record"]["provider"] == "fmp"
+    assert info["blob"] == b"fallback-blob"
+
+
+def test_trailing_fallback_rejects_disagreement_and_thin_overlap(monkeypatch):
+    primary = _official()
+    good = [(d.date().isoformat(), float(v)) for d, v in primary.tail(4).items()]
+    _patch_fmp(monkeypatch, good[:-2] + [(good[-2][0], good[-2][1] + 0.5)] + [("2026-11-10", 19.46)])
+    with pytest.raises(SourceError, match="disagrees"):
+        trailing_fallback("vix", primary, "2026-11-10")
+    _patch_fmp(monkeypatch, good[-2:] + [("2026-11-10", 19.46)])
+    with pytest.raises(SourceError, match="overlap"):
+        trailing_fallback("vix", primary, "2026-11-10")
+
+
+def test_trailing_fallback_skips_current_or_unlisted_sources(monkeypatch):
+    primary = _official()
+    _patch_fmp(monkeypatch, [("2026-11-10", 19.46)])
+    s, info = trailing_fallback("vix", primary, "2026-11-09")
+    assert s is primary and info is None
+    s, info = trailing_fallback("sp500", primary, "2026-11-10")
+    assert s is primary and info is None
+    same = [(d.date().isoformat(), float(v)) for d, v in primary.tail(4).items()]
+    _patch_fmp(monkeypatch, same)
+    s, info = trailing_fallback("vix", primary, "2026-11-10")
+    assert s is primary and info is None
 
 
 def test_source_parser_rejects_duplicate_and_invalid():

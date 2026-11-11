@@ -17,6 +17,13 @@ class SourceError(RuntimeError):
     pass
 
 
+# Faster real channels for the same datum: the official file stays authoritative,
+# a fallback may only extend it past its last date, never replace or estimate it.
+FALLBACKS = {"vix": dict(provider="fmp", symbol="^VIX")}
+FALLBACK_TOLERANCE = 0.005
+FALLBACK_MIN_OVERLAP = 3
+
+
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
@@ -56,20 +63,64 @@ def series(rows, start, end):
     return s
 
 
+def fmp_rows(symbol, start, end):
+    key = os.environ.get("FMP_API_KEY")
+    if not key:
+        raise SourceError("FMP credential unavailable")
+    url = "https://financialmodelingprep.com/stable/historical-price-eod/full"
+    blob = fetch(url, dict(symbol=symbol, **{"from": start, "to": end}, apikey=key))
+    obj = json.loads(blob)
+    if not isinstance(obj, list):
+        raise SourceError("Unexpected FMP response schema")
+    if any(r.get("symbol", symbol) != symbol for r in obj):
+        raise SourceError("FMP identity mismatch")
+    return [(r["date"], r["close"]) for r in obj], blob, url
+
+
+def trailing_fallback(source_id, primary, end):
+    """Extend an official series with the identical datum from a faster distributor.
+
+    Applies only to sources listed in FALLBACKS, only for dates strictly after the
+    official file's last date, and only when both channels agree within
+    FALLBACK_TOLERANCE on at least FALLBACK_MIN_OVERLAP recent overlapping dates.
+    Returns (series, None) untouched when no fallback applies, or
+    (merged, dict(record=..., blob=...)) when dates were added.
+    """
+    fb = FALLBACKS.get(source_id)
+    if not fb or primary.index.max() >= pd.Timestamp(end):
+        return primary, None
+    probe_start = (primary.index.max() - pd.Timedelta(days=21)).date().isoformat()
+    rows, blob, url = fmp_rows(fb["symbol"], probe_start, end)
+    values = {}
+    for day, value in rows:
+        day = pd.Timestamp(day).normalize()
+        if day in values:
+            raise SourceError("Duplicate fallback date")
+        if value is not None and value not in ("", ".", "NA"):
+            values[day] = float(value)
+    alt = pd.Series(values, dtype=float).sort_index()
+    overlap = primary.index.intersection(alt.index)
+    if len(overlap) < FALLBACK_MIN_OVERLAP:
+        raise SourceError("Fallback overlap insufficient")
+    if (primary.loc[overlap] - alt.loc[overlap]).abs().max() > FALLBACK_TOLERANCE:
+        raise SourceError("Fallback disagrees with official history")
+    extra = alt[(alt.index > primary.index.max()) & (alt.index <= pd.Timestamp(end))]
+    if extra.empty:
+        return primary, None
+    if not np.isfinite(extra).all() or (extra <= 0).any():
+        raise SourceError("Nonfinite or nonpositive fallback values")
+    merged = pd.concat([primary, extra]).sort_index()
+    record = dict(provider=fb["provider"], symbol=fb["symbol"], url=url,
+                  dates=[d.date().isoformat() for d in extra.index],
+                  sha256=hashlib.sha256(blob).hexdigest(),
+                  observed_at=datetime.now(timezone.utc).isoformat())
+    return merged, dict(record=record, blob=blob)
+
+
 def acquire_one(source, start, end):
     provider, symbol = source["provider"], source["symbol"]
     if provider == "fmp":
-        key = os.environ.get("FMP_API_KEY")
-        if not key:
-            raise SourceError("FMP credential unavailable")
-        url = "https://financialmodelingprep.com/stable/historical-price-eod/full"
-        blob = fetch(url, dict(symbol=symbol, **{"from": start, "to": end}, apikey=key))
-        obj = json.loads(blob)
-        if not isinstance(obj, list):
-            raise SourceError("Unexpected FMP response schema")
-        if any(r.get("symbol", symbol) != symbol for r in obj):
-            raise SourceError("FMP identity mismatch")
-        rows = [(r["date"], r["close"]) for r in obj]
+        rows, blob, url = fmp_rows(symbol, start, end)
     elif provider == "yahoo":
         url = "https://query1.finance.yahoo.com/v8/finance/chart/" + quote(symbol, safe="")
         blob = fetch(url, dict(period1=int(pd.Timestamp(start, tz="UTC").timestamp()),
@@ -111,14 +162,26 @@ def acquire(spec, start, end, destination):
         key = source["id"]
         try:
             s, blob, url = acquire_one(source, start, end)
+            fallback = None
+            if key in FALLBACKS:
+                try:
+                    s, fallback = trailing_fallback(key, s, end)
+                except SourceError as ex:
+                    # The official series stands on its own; a fallback problem is recorded, never fatal.
+                    fallback = dict(record=dict(error=str(ex)))
             # Only provider response bodies are persisted. Never save request query credentials.
             raw_path = destination / (key + ".raw")
             raw_path.write_bytes(blob)
             s.rename("close").to_csv(destination / (key + ".csv"), index_label="date")
             prices[key] = s
-            records.append(dict(source=key, provider=source["provider"], symbol=source["symbol"], url=url,
-                                first=s.index.min().date().isoformat(), last=s.index.max().date().isoformat(), n=len(s),
-                                sha256=hashlib.sha256(blob).hexdigest(), observed_at=datetime.now(timezone.utc).isoformat()))
+            record = dict(source=key, provider=source["provider"], symbol=source["symbol"], url=url,
+                          first=s.index.min().date().isoformat(), last=s.index.max().date().isoformat(), n=len(s),
+                          sha256=hashlib.sha256(blob).hexdigest(), observed_at=datetime.now(timezone.utc).isoformat())
+            if fallback:
+                record["fallback"] = fallback["record"]
+                if "blob" in fallback:
+                    (destination / (key + ".fallback.raw")).write_bytes(fallback["blob"])
+            records.append(record)
         except Exception as ex:
             errors.append(dict(source=key, error=str(ex) if isinstance(ex, SourceError) else type(ex).__name__))
     manifest = dict(start=start, end=end, records=records, errors=errors)

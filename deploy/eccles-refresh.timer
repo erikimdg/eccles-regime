@@ -3,6 +3,7 @@ Description=ECCLES daily collection and delayed-provider retries
 
 [Timer]
 OnCalendar=Mon..Sat *-*-* 07,09,12,16:20:00 Asia/Seoul
+OnCalendar=Mon..Sat *-*-* 10:40:00 Asia/Seoul
 Persistent=true
 RandomizedDelaySec=30
 Unit=eccles-refresh.service

@@ -1,0 +1,37 @@
+{
+  "verified_at": "2026-11-16T07:09:22.868834+00:00",
+  "api_checks": [
+    {
+      "period": "training",
+      "rows": 5391,
+      "pages": 12,
+      "first": "2001-01-02",
+      "last": "2022-12-30",
+      "clustering_distances_raw_inputs_neon_and_interpretation": "passed"
+    },
+    {
+      "period": "validation",
+      "rows": 490,
+      "pages": 2,
+      "first": "2023-01-03",
+      "last": "2024-12-30",
+      "clustering_distances_raw_inputs_neon_and_interpretation": "passed"
+    }
+  ],
+  "authentication": "passed",
+  "warmup_unpublished": true,
+  "limit_enforced": true,
+  "model_version": "1.0",
+  "service_version": "1.0.1",
+  "model_sha256": "23ee686ab3d4403e48ac887644f1d754ee806246e772ddebfb3313175235f764",
+  "latest": {
+    "as_of": "2026-11-13",
+    "regime": "C2",
+    "origin": "live_original_sources"
+  },
+  "data_status": "current",
+  "services": [
+    "active",
+    "active"
+  ]
+}

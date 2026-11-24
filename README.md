@@ -17,6 +17,14 @@ Training: 2001-2022, 5,391 complete dates. Previously examined validation: 2023-
 | [Exact bundle](models/1.0/model.json) | Ordered sources, formulas, scalers, weights, centers, labels and beta |
 | [Validation evidence](docs/validation/replay.json) | Historical reproduction, tolerances and denominators |
 
+## Morning API publication
+
+The original-index API targets publication before 10:00 KST. Added 09:40, 09:50, 09:55 and 09:58 collection, retaining earlier attempts and later retries. Source first-observed times, result publication and authenticated API-ready times are logged on the server. Prospective morning evidence starts November 20. [Schedule and record definitions](docs/API.md#daily-source-contract).
+
+## Historical API coverage
+
+November 16, 2026: all 5,391 training and 490 examined validation records are available through the existing dated/range API, including raw inputs, distances, NEON relevance and interpretation. [Queries and provenance](docs/API.md#training-and-validation-history). Model v1.0, zero refits.
+
 ## Release observation
 
 As collected on November 10, 2026, the latest complete observation is **November 6: C2, weak/stressed**, with **C1** the closest alternative. The official Cboe daily VIX file ends November 6 while the other 17 sources include November 9. The service retains November 6 and reports November 9 `missing_inputs`. Query the API for subsequent live updates; this README is a dated release snapshot.

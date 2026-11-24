@@ -1,0 +1,34 @@
+{
+  "model_version": "1.0",
+  "model_sha256": "23ee686ab3d4403e48ac887644f1d754ee806246e772ddebfb3313175235f764",
+  "manifest_sha256": "2bf194d01eb8c03b0d13c0acc959d91d476baa3b6200d1f5b412ba5408fd87c9",
+  "inserted": 5881,
+  "already_present": 0,
+  "total": 5881,
+  "periods": [
+    {
+      "name": "training",
+      "start": "2001-01-01",
+      "end": "2022-12-31",
+      "count": 5391
+    },
+    {
+      "name": "validation",
+      "start": "2023-01-01",
+      "end": "2024-12-31",
+      "count": 490
+    }
+  ],
+  "verified_at": "2026-11-16T07:08:46.255469+00:00",
+  "fits": 0,
+  "max_distance_error": 5.684341886080802e-14,
+  "max_relevance_error": 2.3592239273284576e-14,
+  "total_stored": 5887,
+  "existing_records_preserved": 6,
+  "api_container_unchanged": true,
+  "wall_seconds": 14.48697586000344,
+  "oom_killed": false,
+  "memory_limit_mib": 1024,
+  "cpus": 1,
+  "backup": "/root/eccles-regime/runtime/history-imports/2026-11-16-before-history.sqlite3"
+}

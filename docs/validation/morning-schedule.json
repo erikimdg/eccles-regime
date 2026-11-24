@@ -1,0 +1,84 @@
+{
+  "schedule_applied": true,
+  "calendar_cases_passed": 8,
+  "model_engine_hashes_unchanged": 12,
+  "api_container_unchanged": true,
+  "latest": {
+    "http_status": 200,
+    "body": {
+      "expected_as_of": "2026-11-18",
+      "available_as_of": "2026-11-18",
+      "data_status": "current",
+      "fresh": true,
+      "checked_at": "2026-11-19T01:06:43.951739+00:00",
+      "result": {
+        "as_of": "2026-11-18",
+        "model_version": "1.0",
+        "service_version": "1.0.1",
+        "regime": "C2",
+        "published_at": "2026-11-19T01:06:30.946557+00:00",
+        "observed_at": "2026-11-19T01:06:30.940032+00:00"
+      },
+      "neon_features": 26
+    }
+  },
+  "refresh": {
+    "started_at": "2026-11-19T01:06:11.757956+00:00",
+    "finished_at": "2026-11-19T01:06:30.962853+00:00",
+    "expected_as_of": "2026-11-18",
+    "available_as_of": "2026-11-18",
+    "status": "current",
+    "published": 1,
+    "source_dates": {
+      "sp500": "2026-11-18",
+      "nasdaq100": "2026-11-18",
+      "russell2000": "2026-11-18",
+      "ftse100": "2026-11-18",
+      "vix": "2026-11-18",
+      "vstoxx": "2026-11-18",
+      "msci_us": "2026-11-18",
+      "msci_uk": "2026-11-18",
+      "msci_japan": "2026-11-18",
+      "msci_canada": "2026-11-18",
+      "msci_australia": "2026-11-18",
+      "msci_germany": "2026-11-18",
+      "msci_france": "2026-11-18",
+      "msci_switzerland": "2026-11-18",
+      "msci_em": "2026-11-18",
+      "msci_emu": "2026-11-18",
+      "msci_cyclical": "2026-11-18",
+      "msci_defensive": "2026-11-18"
+    },
+    "availability": {
+      "date": "2026-11-18",
+      "missing_features": [],
+      "scheduled_closures": [],
+      "absent_sources": [],
+      "state": "complete"
+    }
+  },
+  "duration_sample": {
+    "n": 28,
+    "median_seconds": 17.281264,
+    "max_seconds": 37.77587
+  },
+  "deadline_guaranteed": false,
+  "deadline_constraint": "Original MSCI publication delay, observed after 09:20 KST on November 19",
+  "first_new_morning": "2026-11-20",
+  "changed_documents": [
+    "regime-model/eccles/README.md",
+    "regime-model/eccles/STUDY.md",
+    "regime-model/eccles/RESEARCH.md",
+    "regime-model/eccles/HISTORY.md",
+    "regime-model/eccles/runs/README.md",
+    "regime-model/eccles/runs/2026-11-19-equity-participation/README.md",
+    "regime-model/eccles/service/docs/DEPLOYMENT.md",
+    "regime-model/eccles/service/docs/API.md",
+    "regime-model/eccles/service/README.md",
+    "regime-model/STUDY.md",
+    "regime-model/HISTORY.md",
+    "PROJECT.md"
+  ],
+  "model_fits": 0,
+  "new_secret_transfers": 0
+}

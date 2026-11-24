@@ -79,6 +79,25 @@ def refresh(models, runtime, version=None, now=None, acquire_fn=acquire):
                 for dt in allowed.index:
                     day = dt.date().isoformat()
                     payload = make_payload(b, day, inputs, raw, snapshot_hash, observed, run_id)
+                    homepage = [r for r in manifest['records'] if r.get('fallback', {}).get('provider') == 'msci_homepage' and day in r['fallback'].get('dates', [])]
+                    if homepage:
+                        payload['origin'] = 'live_original_sources_with_msci_homepage'
+                        payload['input_quality'] = dict(msci_route='verified_homepage_capture',
+                            displayed_decimal_places=2, affected_sources=[r['source'] for r in homepage],
+                            automatic_browser_collection=False, full_precision_reconciliation='pending')
+                    downloads = [r for r in manifest['records'] if r.get('fallback', {}).get('provider') == 'msci_public_download' and day in r['fallback'].get('dates', [])]
+                    if downloads:
+                        payload['origin'] = 'live_original_sources_with_msci_public_download'
+                        payload.setdefault('input_quality', {})['msci_public_download'] = dict(
+                            displayed_decimal_places=3, affected_sources=[r['source'] for r in downloads],
+                            automatic_collection=True, full_precision_reconciliation='pending')
+                    web = [r for r in manifest['records'] if r.get('fallback', {}).get('provider') == 'msci_homepage_api' and day in r['fallback'].get('dates', [])]
+                    if web:
+                        payload['origin'] = 'live_original_sources_with_msci_homepage_api'
+                        payload.setdefault('input_quality', {})['msci_homepage_api'] = dict(
+                            displayed_decimal_places=3, affected_sources=[r['source'] for r in web],
+                            automatic_collection=True, capture_method='public_homepage_read_action',
+                            full_precision_reconciliation='pending')
                     old = store.get(b.version, day)
                     if old and old["feature_vector_sha256"] != payload["feature_vector_sha256"]:
                         revisions.append(dict(date=day, preserved_regime=old["regime"], revised_snapshot_regime=payload["regime"], original_hash=old["feature_vector_sha256"], revised_hash=payload["feature_vector_sha256"]))

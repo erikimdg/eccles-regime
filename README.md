@@ -67,3 +67,9 @@ The API refuses startup without a token of at least 32 characters. The unauthent
 This private repository contains the frozen portable bundle, derived training references, golden examples, service source, tests, release report and deployment templates. Raw vendor histories, proprietary HSBC documents/photos, credentials, live snapshots and SQLite records stay outside Git. The full historical research runs remain in the original ECCLES workspace.
 
 The model is immutable within a version. Supported recipe changes can be delivered as a new model bundle; new feature operators require a compatible engine update. See [VERSIONING](docs/VERSIONING.md).
+
+## Repository verification
+
+Run pytest for deterministic model, API, provenance and collector checks. Recorded-source tests use local research captures through ECCLES_REPLAY_ROOT; those modules report an explicit skip when private captures are absent. No training or live provider collection is required by the test suite.
+
+The November 24 repository reconciliation preserves collector v1.0.4, the API network configuration and the frontend guide. It does not deploy or restart services.

@@ -1,6 +1,8 @@
 from pathlib import Path
-import copy,json,sys
-R=Path(__file__).resolve().parents[2]/'runs/2026-11-20-before09-original-feed'
+import copy,json,sys,os
+SERVICE=Path(__file__).resolve().parents[1]
+REPLAYS=Path(os.environ.get('ECCLES_REPLAY_ROOT', str(SERVICE.parent/'runs')))
+R=REPLAYS/'2026-11-20-before09-original-feed'
 sys.path.insert(0,str(R/'xlrd-2.0.2-py2.py3-none-any.whl'))
 import numpy as np
 import pandas as pd
@@ -13,9 +15,11 @@ def isolate_new_live_homepage(monkeypatch):
  from eccles_service import msci_web
  monkeypatch.setattr(msci_web,'extend',lambda source,p,*args:(p,None))
 
+if not (R/'input/validation-download.xls').is_file():
+ pytest.skip('Set ECCLES_REPLAY_ROOT for private recorded-source checks', allow_module_level=True)
 BLOB=(R/'input/validation-download.xls').read_bytes()
 DATA=md.parse_download(BLOB,list(md.NAMES),'2026-08-03','2026-11-19')
-SPEC=json.loads((R.parents[1]/'service/models/1.0/model.json').read_text())
+SPEC=json.loads((SERVICE/'models/1.0/model.json').read_text())
 SOURCE=next(x for x in SPEC['sources'] if x['id']=='msci_us')
 
 class Sheet:

@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
-import base64,copy,hashlib,io,json
+import base64,copy,hashlib,io,json,os
 import numpy as np
 import pandas as pd
 import pytest
@@ -8,8 +8,11 @@ from eccles_service import msci_web as w, sources, morning
 from eccles_service.pipeline import refresh
 from eccles_service.storage import load_version,activate,Store
 
-ROOT=Path(__file__).resolve().parents[2]
-R=ROOT/'runs/2026-11-23-homepage-automation'
+ROOT=Path(__file__).resolve().parents[1]
+REPLAYS=Path(os.environ.get('ECCLES_REPLAY_ROOT',str(ROOT.parent/'runs')))
+R=REPLAYS/'2026-11-23-homepage-automation'
+if not (R/'server-before.json').is_file():
+    pytest.skip('Set ECCLES_REPLAY_ROOT for private recorded-source checks', allow_module_level=True)
 BEFORE=json.loads((R/'server-before.json').read_text())
 SPEC=BEFORE['model_spec']
 PRICES={k:pd.read_csv(io.StringIO(v),index_col=0,parse_dates=True)['close'] for k,v in BEFORE['prices'].items()}
@@ -104,23 +107,23 @@ def test_live_homepage_precedes_xls_and_provenance(monkeypatch,tmp_path):
     assert (tmp_path/'snapshot/msci-homepage-evidence.json').exists()
 
 def test_endpoint_publication_exact_model_immutable(monkeypatch,tmp_path):
-    b=load_version(ROOT/'service/models','1.0');activate(ROOT/'service/models',tmp_path,'1.0')
+    b=load_version(ROOT/'models','1.0');activate(ROOT/'models',tmp_path,'1.0')
     original=w.extend
     monkeypatch.setattr(w,'extend',lambda s,p,end,c,rt:original(s,p,end,c,rt,capture))
     monkeypatch.setattr(sources,'acquire_one',lambda s,*a:(PRICES[s['id']].loc[:'2026-11-19'] if s['provider']=='msci' else PRICES[s['id']],b'original','original'))
     monkeypatch.setenv('ECCLES_RUNTIME',str(tmp_path))
-    out=refresh(ROOT/'service/models',tmp_path,now='2026-11-21T00:59:00Z')
+    out=refresh(ROOT/'models',tmp_path,now='2026-11-21T00:59:00Z')
     assert out['status']=='current'
     payload=Store(tmp_path).latest('1.0')
     assert payload['as_of']=='2026-11-20' and payload['origin']=='live_original_sources_with_msci_homepage_api'
     assert payload['model_sha256']==b.hash
     assert len(payload['input_quality']['msci_homepage_api']['affected_sources'])==12
-    again=refresh(ROOT/'service/models',tmp_path,now='2026-11-21T01:00:00Z')
+    again=refresh(ROOT/'models',tmp_path,now='2026-11-21T01:00:00Z')
     assert again['published']==0 and Store(tmp_path).latest('1.0')==payload
 
 def test_partial_workbook_missing_is_not_error():
     from eccles_service import msci_download
-    raw=json.loads((ROOT/'runs/2026-11-20-before09-original-feed/observations/20261121-raw.json').read_text())
+    raw=json.loads((REPLAYS/'2026-11-20-before09-original-feed/observations/20261121-raw.json').read_text())
     parsed=msci_download.parse_download(base64.b64decode(raw['downloads'][0]['raw_base64']),list(msci_download.NAMES),'2026-11-06','2026-11-20')
     assert sum(pd.Timestamp('2026-11-20') in s.index for s in parsed.values())==6
 
@@ -135,22 +138,22 @@ def test_morning_full_slots_and_trigger_cooldown():
     assert morning.decision({'status':'current'},{'as_of':'2026-11-20'},'2026-11-20',cap,SPEC['sources'],{},now)=='already_current'
 
 def test_morning_auto_trigger_and_error_backoff(tmp_path):
-    activate(ROOT/'service/models',tmp_path,'1.0')
+    activate(ROOT/'models',tmp_path,'1.0')
     now=datetime(2026,11,20,23,59,tzinfo=timezone.utc)
     store=Store(tmp_path)
     store.attempt(dict(run_id='test-missing',model_version='1.0',started_at=now.isoformat(),
                        expected_as_of='2026-11-20',status='missing_inputs',
                        source_dates={s['id']:'2026-11-19' for s in SPEC['sources']}))
     calls=[]
-    out=morning.run(ROOT/'service/models',tmp_path,now=now,fetch_fn=capture,
+    out=morning.run(ROOT/'models',tmp_path,now=now,fetch_fn=capture,
                     refresh_fn=lambda *a,**k:(calls.append(k) or {'status':'current'}))
     assert out['status']=='trigger_refresh' and len(calls)==1
     assert w.load_recent(tmp_path,'2026-11-20') is not None
-    out=morning.run(ROOT/'service/models',tmp_path,now=now+timedelta(minutes=2),fetch_fn=capture,
+    out=morning.run(ROOT/'models',tmp_path,now=now+timedelta(minutes=2),fetch_fn=capture,
                     refresh_fn=lambda *a,**k:pytest.fail('duplicate full refresh'))
     assert out['status']=='waiting_full_retry'
     def fail(day):raise ValueError('schema changed')
-    out=morning.run(ROOT/'service/models',tmp_path,now=now+timedelta(minutes=3),fetch_fn=fail)
+    out=morning.run(ROOT/'models',tmp_path,now=now+timedelta(minutes=3),fetch_fn=fail)
     assert out['status']=='homepage_error'
-    out=morning.run(ROOT/'service/models',tmp_path,now=now+timedelta(minutes=4),fetch_fn=lambda *a:pytest.fail('backoff'))
+    out=morning.run(ROOT/'models',tmp_path,now=now+timedelta(minutes=4),fetch_fn=lambda *a:pytest.fail('backoff'))
     assert out['status']=='homepage_error_backoff'

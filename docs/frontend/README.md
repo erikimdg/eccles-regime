@@ -43,9 +43,9 @@ The page opens with the 3D regime space in full screen. The Details button on th
 ![echoes](img/04_echoes.png)
 
 - NOW card: market headlines for today (latest US trading day). FMP news is ingested once a day (first view triggers collection), with thumbnail, 2-line summary, and a link to the original article
-- Top 3 analogs: nearest-neighbor search of today's 26 inputs in PCA space (excluding the last 120 days, with 45-day episode separation). Each card shows that week's headlines from the archive, the regime path, and weekly index returns
+- Top 3 analogs: ranked 60% by today's position in PCA space and 40% by the shape of the last 10 trading days' path (excluding the last 120 days, with 45-day episode separation). Each card shows that week's headlines from the archive and the regime path. Post-date returns were removed on 2026-11-24 after a 20-year backtest showed analog forward returns carry no predictive power
 - WHY IT ECHOES: Claude compares today's headlines with that week's headlines and writes 2~3 sentences on the investor psychology the two moments share and the lesson of that episode. It only uses headlines visible on screen, and the result is cached so it is generated once per analog
-- Headline archive: 853 curated entries 2001~2025 (date-verified major events, with Wikipedia links), plus a GDELT weekly backfill of real articles from 2017 onward (in progress), plus daily FMP ingestion since 2026-11-18
+- Headline archive: 1,716 entries — 853 curated 2001~2025 (date-verified major events, with Wikipedia links) plus a GDELT weekly backfill of real articles 2017~2026 (completed 2026-11-27: 524 weeks, top 2 articles per week with source, link and image), plus daily FMP ingestion since 2026-11-18
 
 ## 5. Both panels at once
 
